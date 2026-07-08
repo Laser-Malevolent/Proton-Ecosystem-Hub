@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proton Ecosystem Hub</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        proton: {
+                            purple: '#6D4AFF',
+                            dark: '#0f1115',
+                            surface: '#1a1c23',
+                            surfaceHover: '#23252d',
+                            text: '#e2e8f0',
+                            textMuted: '#94a3b8'
+                        }
+                    },
+                    animation: {
+                        'fade-in-up': 'fadeInUp 0.8s ease-out forwards',
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    },
+                    keyframes: {
+                        fadeInUp: {
+                            '0%': { opacity: '0', transform: 'translateY(20px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #0f1115;
+            color: #e2e8f0;
+            overflow-x: hidden;
+        }
+        
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0f1115; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #23252d; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #6D4AFF; 
+        }
+
+        /* Glassmorphism effects */
+        .glass-panel {
+            background: rgba(26, 28, 35, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        /* Search bar glow */
+        .search-glow:focus-within {
+            box-shadow: 0 0 25px rgba(109, 74, 255, 0.3);
+            border-color: rgba(109, 74, 255, 0.6);
+        }
+
+        /* Staggered animation delays for grid items */
+        .delay-100 { animation-delay: 100ms; }
+        .delay-200 { animation-delay: 200ms; }
+        .delay-300 { animation-delay: 300ms; }
+        .delay-400 { animation-delay: 400ms; }
+        .delay-500 { animation-delay: 500ms; }
+        .delay-600 { animation-delay: 600ms; }
+        
+        /* Ambient background glow */
+        .ambient-glow {
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(109,74,255,0.15) 0%, rgba(15,17,21,0) 70%);
+            top: -200px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: -1;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body class="antialiased min-h-screen flex flex-col relative">
+
+    <div class="ambient-glow animate-pulse-slow"></div>
+
+    <nav class="w-full glass-panel sticky top-0 z-50 border-b border-gray-800/50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center gap-3 cursor-pointer">
+                    <div class="w-8 h-8 rounded-lg bg-proton-purple flex items-center justify-center shadow-lg shadow-proton-purple/30">
+                        <i class="fa-solid fa-cube text-white text-sm"></i>
+                    </div>
+                    <span class="font-bold text-xl tracking-tight text-white">Proton Hub</span>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-6">
+                        <a href="https://proton.me/about" target="_blank" class="text-proton-textMuted hover:text-white transition-colors px-3 py-2 rounded-md text-sm font-medium">About</a>
+                        <a href="https://proton.me/pricing" target="_blank" class="text-proton-textMuted hover:text-white transition-colors px-3 py-2 rounded-md text-sm font-medium">Pricing</a>
+                        <a href="https://account.proton.me/login" target="_blank" class="bg-proton-surfaceHover border border-gray-700 hover:border-proton-purple/50 text-white px-4 py-2 rounded-lg text-sm font-medium transition-all shadow-sm hover:shadow-proton-purple/20">Sign In</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="flex-grow flex flex-col items-center pt-20 pb-12 px-4 sm:px-6 lg:px-8 w-full max-w-7xl mx-auto z-10">
+        
+        <div class="text-center max-w-3xl w-full mb-12 opacity-0 animate-fade-in-up">
+            <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight text-white mb-4">
+                Privacy by <span class="text-transparent bg-clip-text bg-gradient-to-r from-proton-purple to-purple-400">Default.</span>
+            </h1>
+            <p class="text-lg md:text-xl text-proton-textMuted mb-10">
+                Search the web securely and access your entire encrypted ecosystem from one place.
+            </p>
+
+            <!-- Search Engine Component (Powered by DuckDuckGo for privacy) -->
+            <div class="w-full max-w-2xl mx-auto relative group">
+                <form action="https://duckduckgo.com/" method="get" class="relative flex items-center w-full h-14 rounded-2xl glass-panel search-glow transition-all duration-300 border border-gray-700/50 overflow-hidden">
+                    <div class="grid place-items-center h-full w-14 text-proton-textMuted">
+                        <i class="fa-solid fa-magnifying-glass text-lg"></i>
+                    </div>
+                    <input
+                        class="peer h-full w-full outline-none text-lg text-white bg-transparent pr-4 font-light placeholder-proton-textMuted"
+                        type="text"
+                        name="q"
+                        id="search"
+                        placeholder="Search the web privately..."
+                        autocomplete="off"
+                        required />
+                    <!-- Hidden input to enforce safe search / privacy defaults if needed -->
+                    <input type="hidden" name="t" value="h_">
+                    <button type="submit" class="absolute right-2 top-1/2 -translate-y-1/2 bg-proton-purple hover:bg-purple-600 text-white rounded-xl px-4 py-1.5 text-sm font-medium transition-colors shadow-lg shadow-proton-purple/30">
+                        Search
+                    </button>
+                </form>
+                <div class="absolute -bottom-8 w-full text-center text-xs text-proton-textMuted font-medium opacity-60">
+                    <i class="fa-solid fa-shield-halved mr-1"></i> Private web search powered by DuckDuckGo
+                </div>
+            </div>
+        </div>
+
+        <div class="w-full mt-16 mb-8">
+            <h2 class="text-xl font-semibold text-white mb-6 border-b border-gray-800 pb-3 flex items-center gap-2">
+                <i class="fa-solid fa-layer-group text-proton-purple"></i> Your Ecosystem
+            </h2>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6">
+                
+                <!-- Proton Mail -->
+                <a href="https://proton.me/mail" target="_blank" class="group glass-panel rounded-2xl p-6 transition-all duration-300 hover:-translate-y-2 hover:bg-proton-surfaceHover hover:border-proton-purple/40 opacity-0 animate-fade-in-up delay-100">
+                    <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-indigo-500/20 to-purple-600/20 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300 border border-indigo-500/30">
+                        <i class="fa-solid fa-envelope text-indigo-400 text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-white mb-2 group-hover:text-indigo-400 transition-colors">Proton Mail</h3>
+                    <p class="text-sm text-proton-textMuted line-clamp-2">Secure, encrypted email that protects your privacy and keeps your communications safe.</p>
+                </a>
+
+                <!-- Proton VPN -->
+                <a href="https://protonvpn.com/" target="_blank" class="group glass-panel rounded-2xl p-6 transition-all duration-300 hover:-translate-y-2 hover:bg-proton-surfaceHover hover:border-green-500/40 opacity-0 animate-fade-in-up delay-100">
+                    <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-emerald-500/20 to-green-600/20 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300 border border-emerald-500/30">
+                        <i class="fa-solid fa-shield-halved text-emerald-400 text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-white mb-2 group-hover:text-emerald-400 transition-colors">Proton VPN</h3>
+                    <p class="text-sm text-proton-textMuted line-clamp-2">High-speed, Swiss-based VPN that bypasses censorship and hides your IP address.</p>
+                </a>
+
+                <!-- Proton Drive -->
+                <a href="https://proton.me/drive" target="_blank" class="group glass-panel rounded-2xl p-6 transition-all duration-300 hover:-translate-y-2 hover:bg-proton-surfaceHover hover:border-blue-500/40 opacity-0 animate-fade-in-up delay-200">
+                    <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-500/20 to-cyan-600/20 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300 border border-blue-500/30">
+                        <i class="fa-solid fa-cloud text-blue-400 text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-white mb-2 group-hover:text-blue-400 transition-colors">Proton Drive</h3>
+                    <p class="text-sm text-proton-textMuted line-clamp-2">End-to-end encrypted cloud storage to safely backup and share your personal files.</p>
+                </a>
+
+                <!-- Proton Calendar -->
+                <a href="https://proton.me/calendar" target="_blank" class="group glass-panel rounded-2xl p-6 transition-all duration-300 hover:-translate-y-2 hover:bg-proton-surfaceHover hover:border-rose-500/40 opacity-0 animate-fade-in-up delay-200">
+                    <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-rose-500/20 to-red-600/20 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300 border border-rose-500/30">
+                        <i class="fa-solid fa-calendar-days text-rose-400 text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-white mb-2 group-hover:text-rose-400 transition-colors">Proton Calendar</h3>
+                    <p class="text-sm text-proton-textMuted line-clamp-2">Organize your life privately with an encrypted calendar that keeps events secure.</p>
+                </a>
+
+                <!-- Proton Pass -->
+                <a href="https://proton.me/pass" target="_blank" class="group glass-panel rounded-2xl p-6 transition-all duration-300 hover:-translate-y-2 hover:bg-proton-surfaceHover hover:border-purple-500/40 opacity-0 animate-fade-in-up delay-300">
+                    <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-purple-500/20 to-fuchsia-600/20 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300 border border-purple-500/30">
+                        <i class="fa-solid fa-key text-purple-400 text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-white mb-2 group-hover:text-purple-400 transition-colors">Proton Pass</h3>
+                    <p class="text-sm text-proton-textMuted line-clamp-2">Secure password manager with integrated hide-my-email aliases and 2FA generator.</p>
+                </a>
+
+                <!-- Proton Docs -->
+                <a href="https://proton.me/drive/docs" target="_blank" class="group glass-panel rounded-2xl p-6 transition-all duration-300 hover:-translate-y-2 hover:bg-proton-surfaceHover hover:border-sky-500/40 opacity-0 animate-fade-in-up delay-300">
+                    <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-sky-500/20 to-blue-600/20 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300 border border-sky-500/30">
+                        <i class="fa-solid fa-file-lines text-sky-400 text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-white mb-2 group-hover:text-sky-400 transition-colors">Proton Docs</h3>
+                    <p class="text-sm text-proton-textMuted line-clamp-2">Collaborative, end-to-end encrypted document editing directly in your browser.</p>
+                </a>
+
+                <!-- Proton Meet -->
+                <a href="https://proton.me/meet" target="_blank" class="group glass-panel rounded-2xl p-6 transition-all duration-300 hover:-translate-y-2 hover:bg-proton-surfaceHover hover:border-pink-500/40 opacity-0 animate-fade-in-up delay-400">
+                    <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-pink-500/20 to-rose-600/20 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300 border border-pink-500/30">
+                        <i class="fa-solid fa-video text-pink-400 text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-white mb-2 group-hover:text-pink-400 transition-colors">Proton Meet</h3>
+                    <p class="text-sm text-proton-textMuted line-clamp-2">Host and join confidential meetings protected by end-to-end encryption.</p>
+                </a>
+
+                <!-- Proton Wallet -->
+                <a href="https://proton.me/wallet" target="_blank" class="group glass-panel rounded-2xl p-6 transition-all duration-300 hover:-translate-y-2 hover:bg-proton-surfaceHover hover:border-orange-500/40 opacity-0 animate-fade-in-up delay-400">
+                    <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-orange-500/20 to-amber-600/20 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300 border border-orange-500/30">
+                        <i class="fa-solid fa-wallet text-orange-400 text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-white mb-2 group-hover:text-orange-400 transition-colors">Proton Wallet</h3>
+                    <p class="text-sm text-proton-textMuted line-clamp-2">A self-custodial Bitcoin wallet that makes holding and transacting crypto simple and secure.</p>
+                </a>
+
+                 <!-- Proton Authenticator -->
+                 <a href="https://proton.me/pass" target="_blank" class="group glass-panel rounded-2xl p-6 transition-all duration-300 hover:-translate-y-2 hover:bg-proton-surfaceHover hover:border-violet-500/40 opacity-0 animate-fade-in-up delay-500">
+                    <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-violet-500/20 to-purple-600/20 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300 border border-violet-500/30">
+                        <i class="fa-solid fa-mobile-screen-button text-violet-400 text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-white mb-2 group-hover:text-violet-400 transition-colors">Authenticator</h3>
+                    <p class="text-sm text-proton-textMuted line-clamp-2">Sync and back up your two-factor authentication (2FA) codes across all devices securely.</p>
+                </a>
+
+                <!-- Standard Notes (Proton Family) -->
+                <a href="https://standardnotes.com/" target="_blank" class="group glass-panel rounded-2xl p-6 transition-all duration-300 hover:-translate-y-2 hover:bg-proton-surfaceHover hover:border-yellow-500/40 opacity-0 animate-fade-in-up delay-500">
+                    <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-yellow-500/20 to-amber-600/20 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300 border border-yellow-500/30">
+                        <i class="fa-solid fa-pen-nib text-yellow-400 text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-white mb-2 group-hover:text-yellow-400 transition-colors">Standard Notes</h3>
+                    <p class="text-sm text-proton-textMuted line-clamp-2">End-to-end encrypted note-taking app, now part of the privacy-first Proton family.</p>
+                </a>
+
+            </div>
+        </div>
+    </main>
+
+    <footer class="w-full border-t border-gray-800/50 mt-auto py-8 text-center bg-proton-dark/80 backdrop-blur-md">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center">
+            <div class="flex items-center gap-2 mb-4">
+                <i class="fa-solid fa-shield-check text-proton-purple"></i>
+                <span class="text-sm text-proton-textMuted font-medium">Privacy by default.</span>
+            </div>
+            <p class="text-xs text-gray-500">
+                This is an unofficial hub linking to the official Proton ecosystem. Not affiliated with Proton AG.<br>
+                All data remains local to your browser until you interact with a specific service.
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // Focus the search bar when the user presses '/'
+        document.addEventListener('keydown', function(e) {
+            if (e.key === '/' && document.activeElement.tagName !== 'INPUT') {
+                e.preventDefault();
+                document.getElementById('search').focus();
+            }
+        });
+
+        // Add a nice subtle glow effect that follows the mouse on the background
+        document.addEventListener('mousemove', (e) => {
+            const glow = document.querySelector('.ambient-glow');
+            if(glow) {
+                // Smooth out the movement slightly
+                requestAnimationFrame(() => {
+                    const x = e.clientX;
+                    const y = e.clientY;
+                    glow.style.left = `${x}px`;
+                    glow.style.top = `${y - 300}px`; // Offset to center the glow on mouse
+                });
+            }
+        });
+    </script>
+</body>
+</html>
